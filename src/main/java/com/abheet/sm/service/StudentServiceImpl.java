@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.abheet.sm.DAO.StudentDAO;
-import com.abheet.sm.DAO.StudentDAOImpl;
 import com.abheet.sm.api.Student;
 import com.abheet.sm.api.StudentDTO;
 
@@ -28,8 +27,36 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void saveStudents(StudentDTO studentdto) {
 		// TODO Auto-generated method stub
+			studentdao.saveStudents(studentdto);
 		
-		studentdao.saveStudents(studentdto);
+	}
+
+	@Override
+	public StudentDTO getStudent(int id) {
+		
+		Student student=studentdao.getStudents(id);
+		
+		StudentDTO studentdto=new StudentDTO();
+		studentdto.setId(student.getId());
+		studentdto.setName(student.getName());
+		studentdto.setMobile(student.getMobile());
+		studentdto.setCountry(student.getCountry());
+		
+		return studentdto;
+	}
+
+	@Override
+	public void updateStudents(StudentDTO studentdto) {
+		// TODO Auto-generated method stub
+		
+		studentdao.updateStudents(studentdto);
+		
+	}
+
+	@Override
+	public void deleteStudent(int id) {
+		// TODO Auto-generated method stub
+		studentdao.deleteStudent(id);
 		
 	}
 		

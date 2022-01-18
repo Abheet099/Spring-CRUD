@@ -42,6 +42,29 @@ public class StudentDAOImpl implements StudentDAO {
 		
 		
 	}
+	@Override
+	public Student getStudents(int id) {
+		String sql= "Select * from students where id = (?)";
+		
+		Student student=JDBCTemplate.queryForObject(sql, new StudentRowMapper(), id );
+		
+		return student;
+	}
+	@Override
+	public void updateStudents(StudentDTO studentdto) {
+		// TODO Auto-generated method stub
+		String sql="UPDATE students SET name= ?, mobile= ?,country= ? where id=?";
+		JDBCTemplate.update(sql,studentdto.getName(),studentdto.getMobile(),studentdto.getCountry(),studentdto.getId());
+		
+		
+	}
+	@Override
+	public void deleteStudent(int id) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM students where id = ?";
+		JDBCTemplate.update(sql,id);
+		
+	}
 	
 	
 

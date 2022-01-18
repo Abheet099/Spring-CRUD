@@ -10,4 +10,10 @@ public interface StudentService {
 	public List<Student> loadStudents();
 
 	public void saveStudents(StudentDTO studentdto);
+
+	public StudentDTO getStudent(int id);
+
+	public void updateStudents(StudentDTO studentdto);
+
+	public void deleteStudent(int id);
 }

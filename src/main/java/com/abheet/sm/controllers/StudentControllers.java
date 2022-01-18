@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.abheet.sm.DAO.StudentDAO;
@@ -51,11 +52,33 @@ public class StudentControllers {
 	@PostMapping("/save-student")
 	public String saveStudent(StudentDTO studentdto)
 	{
-		
-		studentService.saveStudents(studentdto);
+		System.out.println(studentdto);
+		if(studentdto.getId()==0)
+			studentService.saveStudents(studentdto);
+		else
+			studentService.updateStudents(studentdto);
 		//System.out.println(studentdto);
 		//showStudentList();
 		return "redirect:/showStudent";
+	}
+	
+	@GetMapping("/updateStudent")
+	public String updateStudent(@RequestParam("userId") int id,Model model)
+	{
+		StudentDTO studentdto=studentService.getStudent(id);
+		//StudentDTO studentdto=new StudentDTO();
+		model.addAttribute("students",studentdto);
+		return "addstudent";
+	}	
+	@GetMapping("/deleteStudent")
+	public String deleteStudent(@RequestParam("userId") int id)
+	{
+		//StudentDTO studentdto=studentService.getStudent(id);
+		//StudentDTO studentdto=new StudentDTO();
+//		model.addAttribute("students",studentdto);
+		studentService.deleteStudent(id);
+		return "redirect:/showStudent";
+		
 	}
 	@ResponseBody
 	@GetMapping("/thankYou")

@@ -25,7 +25,7 @@
 					<td>id</td>
 					<td>name</td>
 					<td>mobile</td>
-					<td>country</td>
+					<td>country</td>	
 				</tr>
 			</thead>
 			<c:forEach var="student" items="${students}">
@@ -34,6 +34,8 @@
 					<td>${student.name}</td>
 					<td>${student.mobile}</td>
 					<td>${student.country}</td>
+					<td><a href="/com.abheet/updateStudent?userId=${student.id}">Update</a></td>
+					<td><a href="/com.abheet/deleteStudent?userId=${student.id}" onClick="if(!confirm('Are you sure you want to delete this entry?')) return false">Delete</a></td>
 				</tr>
 			</c:forEach>
 

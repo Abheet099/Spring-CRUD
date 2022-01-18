@@ -11,4 +11,10 @@ public interface StudentDAO {
 	
 	void saveStudents(StudentDTO student);
 
+	Student getStudents(int id);
+
+	void updateStudents(StudentDTO studentdto);
+
+	void deleteStudent(int id);
+
 }
